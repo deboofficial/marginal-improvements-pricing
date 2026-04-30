@@ -169,25 +169,26 @@
     }
 
     /* ─── PRICING ─────────────────────────────────────── */
-    .pricing { background: #040404; }
+    .pricing { background: #040404; padding-top: 60px; }
 
     .pricing-header {
       text-align: center;
       margin-bottom: 48px;
     }
 
-    .pricing-header h1 {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0;
+    .sticky-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 90;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 16px; font-weight: 700;
       color: var(--white);
-      padding: 16px 0;
-      margin-bottom: 0;
-      transition: backdrop-filter 0.1s ease;
+      background: transparent;
+      pointer-events: none;
     }
+
+    .sticky-header em { font-style: normal; }
 
     .pricing-header h1 em { font-style: normal; }
 
@@ -703,11 +704,15 @@
 </head>
 <body>
 
+  <!-- ─── STICKY HEADER ───────────────────────────────── -->
+  <div class="sticky-header" id="stickyHeader">
+    <span>Choose <em>your plan</em></span>
+  </div>
+
   <!-- ─── PRICING ─────────────────────────────────────── -->
   <section class="pricing" id="pricing">
     <div class="content-wrap">
     <div class="pricing-header">
-      <h1 id="stickyHeader">Choose <em>your plan</em></h1>
       <div class="plan-filter">
         <button class="plan-filter-btn active" data-filter="all">All Plans</button>
         <button class="plan-filter-btn" data-filter="ongoing">Coaching</button>
@@ -1217,8 +1222,8 @@
     // ─── STICKY HEADER BLUR ────────────────────────────────
     const stickyHeader = document.getElementById('stickyHeader');
     window.addEventListener('scroll', () => {
-      const blur = Math.min(window.scrollY / 10, 16);
-      const bg = Math.min(window.scrollY / 80, 0.7);
+      const blur = Math.min(window.scrollY / 8, 20);
+      const bg = Math.min(window.scrollY / 60, 0.75);
       stickyHeader.style.backdropFilter = `blur(${blur}px)`;
       stickyHeader.style.webkitBackdropFilter = `blur(${blur}px)`;
       stickyHeader.style.background = `rgba(4,4,4,${bg})`;
