@@ -670,6 +670,22 @@
     @media (min-width: 1000px) {
       section { padding: 100px 5%; }
     }
+
+    /* ─── APPEAR ANIMATION ────────────────────────────── */
+    .appear {
+      opacity: 0;
+      transform: scale(0.5);
+      transform-origin: bottom center;
+    }
+
+    .appear.visible {
+      opacity: 1;
+      transform: scale(1);
+      /* Spring: time 0.4s, bounce 0.2 — approximated with cubic-bezier overshoot */
+      transition:
+        opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
   </style>
 </head>
 <body>
@@ -1189,6 +1205,32 @@
         groupMonthly.classList.toggle('hidden', f === 'onetime');
       });
     });
+
+    // ─── APPEAR ON SCROLL ──────────────────────────────────
+    const appearEls = document.querySelectorAll(
+      '.pricing-header, .plan-filter, .plan-group-label, .card, .comparison-header, .comparison table'
+    );
+
+    appearEls.forEach((el, i) => {
+      el.classList.add('appear');
+      // Stagger cards within the same grid
+      if (el.classList.contains('card')) {
+        const siblings = el.parentElement.querySelectorAll('.card');
+        const idx = Array.from(siblings).indexOf(el);
+        el.style.transitionDelay = `${idx * 0.08}s`;
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    appearEls.forEach(el => observer.observe(el));
   </script>
 
   <!-- ─── AGENTATION ────────────────────────────────────── -->
