@@ -760,7 +760,7 @@
 
         <div class="card">
           <div class="card-top">
-            <div class="card-name">Foundation (Training + nutrition bundle)</div>
+            <div class="card-name">Foundation<br>(Training + nutrition bundle)</div>
             <div class="price-big">£49</div>
           </div>
           <div class="card-divider"></div>
@@ -786,7 +786,7 @@
         <div class="card popular">
           <div class="popular-badge">Most Popular</div>
           <div class="card-top">
-            <div class="card-name">Transformation (All-inclusive + Virtual coaching)</div>
+            <div class="card-name">Transformation<br>(All-inclusive + Virtual coaching)</div>
             <div class="price-big">£119<span class="price-period">/mo</span></div>
           </div>
           <div class="card-divider"></div>
@@ -804,7 +804,7 @@
 
         <div class="card">
           <div class="card-top">
-            <div class="card-name">Elite (All-inclusive + in-person coaching)</div>
+            <div class="card-name">Elite<br>(All-inclusive + in-person coaching)</div>
             <div class="price-big">£349<span class="price-period">/mo</span></div>
           </div>
           <div class="card-divider"></div>
@@ -1164,7 +1164,7 @@
 
       sheetFeats.innerHTML = p.features.map(f => {
         if (f.toLowerCase().startsWith('everything in')) {
-          return `<li style="padding-bottom:4px"><span style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#555">${f}</span></li>`;
+          return `<li><span>${f}</span></li>`;
         }
         return `<li>${checkIcon()}<span>${f}</span></li>`;
       }).join('');
