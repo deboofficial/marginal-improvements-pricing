@@ -287,7 +287,7 @@
     .card:hover { transform: translateY(-3px); }
 
     .card.popular {
-      background: #0e1a00;
+      background: #0F0F0F;
       border: 1.5px solid var(--accent);
     }
 
@@ -311,7 +311,7 @@
       color: #888; margin-bottom: 10px;
     }
 
-    .card.popular .card-name { color: rgba(200,241,53,0.6); }
+    .card.popular .card-name { color: #888; }
 
     .price-big {
       font-size: 5rem; font-weight: 900;
@@ -319,7 +319,7 @@
       line-height: 1; margin-bottom: 6px;
     }
 
-    .card.popular .price-big { color: var(--accent); }
+    .card.popular .price-big { color: var(--white); }
 
     .price-period {
       font-size: 1.2rem; font-weight: 500; color: #666;
@@ -338,7 +338,7 @@
       display: flex; flex-direction: column; gap: 12px;
       flex: 1; margin-bottom: 24px;
       background: #131313;
-      border-radius: 16px;
+      border-radius: 28px;
       padding: 20px;
     }
 
@@ -1160,11 +1160,14 @@
       sheetPeriod.textContent = p.period;
       sheetDesc.textContent   = p.desc;
 
-      sheetPrice.style.color  = popular ? 'var(--accent)' : 'var(--white)';
+      sheetPrice.style.color  = 'var(--white)';
 
-      sheetFeats.innerHTML = p.features.map(f =>
-        `<li>${checkIcon()}<span>${f}</span></li>`
-      ).join('');
+      sheetFeats.innerHTML = p.features.map(f => {
+        if (f.toLowerCase().startsWith('everything in')) {
+          return `<li style="padding-bottom:4px"><span style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#555">${f}</span></li>`;
+        }
+        return `<li>${checkIcon()}<span>${f}</span></li>`;
+      }).join('');
 
       sheetDetail.innerHTML = `<strong>${p.detail.label}</strong>${p.detail.text}`;
 
