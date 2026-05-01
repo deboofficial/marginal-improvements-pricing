@@ -746,7 +746,7 @@
         <div class="card">
           <div class="card-top">
             <div class="card-name">Training Plan Only</div>
-            <div class="price-big">£19</div>
+            <div class="price-big">£49</div>
           </div>
           <div class="card-divider"></div>
           <div class="card-expect">What can you expect?</div>
@@ -913,7 +913,7 @@
   <div class="sheet" id="sheet" role="dialog" aria-modal="true">
     <div class="sheet-handle"></div>
     <div class="sheet-scroll">
-      <div class="sheet-badge" id="sheetBadge"></div>
+      <div class="sheet-badge" id="sheetBadge" style="display:none"></div>
       <div class="sheet-header">
         <div class="sheet-name" id="sheetName"></div>
         <div class="sheet-price-row">
@@ -1052,21 +1052,25 @@
         badge: 'Tier 01', badgePlain: true,
         name: 'Meal Plan Only',
         price: '£29', period: 'one-time payment',
-        desc: 'A fully personalised nutrition plan built around your body, goals, and lifestyle. No subscriptions, no ongoing fees — just a solid plan you can use straight away.',
+        desc: 'A personalised nutrition plan built around your body, your goals, and how you actually live.',
         features: [
-          'Personalised calorie target based on your stats & goal',
-          'Full macro breakdown (protein, carbs, fats)',
-          'Sample meal ideas tailored to your preferences',
-          'Smart food swaps to make hitting targets easier',
+          'Personalised daily calorie & macro targets',
+          'Structured meal plan (with portions & quantities)',
+          'Simple, repeatable recipes',
+          'Full grocery list (done for you)',
+          'Eating out guide (stay on track anywhere)',
+          'Refeed / cheat meal guidelines',
+          'Macro-friendly snack & dessert ideas',
+          'Clear DOs & DON\'Ts for faster results',
         ],
-        detail: { label: 'Who this is for', text: 'Great if you already train consistently and just need your nutrition dialled in. You get the plan once — and it\'s yours to keep.' },
-        cta: 'Buy £29', ctaOutline: false,
+        detail: { label: 'Who this is for', text: 'Perfect if you already train consistently and just need to get your nutrition locked in.' },
+        cta: 'Get plan · £29', ctaOutline: false,
         paymentLink: 'https://buy.stripe.com/5kQ9AU1vh1lj20T5Lv48005',
       },
       2: {
         badge: 'Tier 02', badgePlain: true,
         name: 'Training Plan Only',
-        price: '£19', period: 'one-time payment',
+        price: '£49', period: 'one-time payment',
         desc: 'A structured, progressive training programme written specifically for your equipment, schedule, and experience level.',
         features: [
           'Structured weekly workout programme',
@@ -1075,7 +1079,7 @@
           'Built around your available days & equipment',
         ],
         detail: { label: 'Who this is for', text: 'Ideal if your nutrition is already on point and you want a smarter, more structured approach to your training. One payment, lifelong access.' },
-        cta: 'Buy £19', ctaOutline: false,
+        cta: 'Get plan · £49', ctaOutline: false,
         paymentLink: 'https://buy.stripe.com/5kQbJ20rde857ld6Pz48006',
       },
       3: {
@@ -1089,7 +1093,7 @@
           'Integrated approach — nutrition supports training',
         ],
         detail: { label: 'What\'s not included', text: 'There are no weekly check-ins, messaging support, or plan adjustments with this tier. If you want that level of support, Tier 04 is the right fit.' },
-        cta: 'Buy £45', ctaOutline: false,
+        cta: 'Get plan · £45', ctaOutline: false,
         paymentLink: 'https://buy.stripe.com/7sY5kE8XJ1lj20T4Hr48009',
       },
       4: {
@@ -1106,7 +1110,7 @@
           'Progress tracking & feedback every week',
         ],
         detail: { label: 'How it works', text: 'After signing up you\'ll complete a detailed intake form. Your plan is delivered within 48 hours. Every week you check in — I review, adjust, and keep you moving forward.' },
-        cta: 'Join £119/mo', ctaOutline: false,
+        cta: 'Get plan · £119/mo', ctaOutline: false,
         paymentLink: 'https://buy.stripe.com/9B67sM5Lxfc98pha1L48007',
       },
       5: {
@@ -1121,7 +1125,7 @@
           'Full accountability structure — no guessing, no slipping',
         ],
         detail: { label: 'Location & availability', text: 'In-person sessions are available in London, United Kingdom. Spots are strictly limited. Reach out to confirm availability before purchasing.' },
-        cta: 'Join £349/mo', ctaOutline: false,
+        cta: 'Get plan · £349/mo', ctaOutline: false,
         paymentLink: 'https://buy.stripe.com/eVq8wQ0rd3trfRJ1vf48008',
       },
     };
@@ -1137,10 +1141,10 @@
     const sheetDetail = document.getElementById('sheetDetail');
     const sheetCta    = document.getElementById('sheetCta');
 
-    function checkIcon(popular) {
+    function checkIcon() {
       return `<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="7" stroke="${popular ? 'var(--accent)' : '#3a3a3a'}" stroke-width="1.2"/>
-        <path d="M5 8l2 2 4-4" stroke="${popular ? 'var(--accent)' : '#555'}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="8" cy="8" r="7" stroke="var(--accent)" stroke-width="1.2"/>
+        <path d="M5 8l2 2 4-4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`;
     }
 
@@ -1158,7 +1162,7 @@
       sheetPrice.style.color  = popular ? 'var(--accent)' : 'var(--white)';
 
       sheetFeats.innerHTML = p.features.map(f =>
-        `<li>${checkIcon(popular)}<span>${f}</span></li>`
+        `<li>${checkIcon()}<span>${f}</span></li>`
       ).join('');
 
       sheetDetail.innerHTML = `<strong>${p.detail.label}</strong>${p.detail.text}`;
