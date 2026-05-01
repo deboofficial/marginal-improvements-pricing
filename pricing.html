@@ -773,6 +773,19 @@
           <button class="cta-btn-white" data-plan="3">Get Plan</button>
         </div>
 
+        <div class="card">
+          <div class="card-top">
+            <div class="card-name">Test Plan</div>
+            <div class="price-big">£1</div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="card-expect">What can you expect?</div>
+          <ul class="features">
+            <li><span class="feat-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polyline points="2,11 6,6 9,9 14,3"/></svg></span>Sandbox test plan</li>
+          </ul>
+          <button class="cta-btn-white" data-plan="6">Get Plan</button>
+        </div>
+
       </div>
     </div>
 
@@ -1128,6 +1141,18 @@
         detail: { label: 'Location & availability', text: 'In-person sessions are available in London, United Kingdom. Spots are strictly limited. Reach out to confirm availability before purchasing.' },
         cta: 'Get plan · £349/mo', ctaOutline: false,
         paymentLink: 'https://buy.stripe.com/eVq8wQ0rd3trfRJ1vf48008',
+      },
+      6: {
+        badge: 'Test', badgePlain: true,
+        name: 'Test Plan',
+        price: '£1', period: 'one-time payment',
+        desc: 'Sandbox plan for testing the full checkout flow end-to-end.',
+        features: [
+          'Sandbox test plan',
+        ],
+        detail: { label: 'Note', text: 'This plan is for internal testing only. Do not share.' },
+        cta: 'Get plan · £1', ctaOutline: false,
+        paymentLink: 'REPLACE_WITH_TEST_PAYMENT_LINK',
       },
     };
 
